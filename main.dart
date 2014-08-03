@@ -34,6 +34,10 @@ void transformImage(ImageElement img) {
       ..putImageData(pixels, 0, 0);
 }
 
+String colorPercentage(ImageElement img, int pixelCount ) {
+  return (pixelCount / (img.width * img.height ) * 100).toStringAsFixed(2);
+}
+
 void processPalette(ImageElement img) {
   var results_el = querySelector('#results');
 
@@ -45,7 +49,7 @@ void processPalette(ImageElement img) {
     var rgb = value['rgb'];
     var count = value['count'];
     var countLabel = new SpanElement();
-    countLabel.appendText(count.toString());
+    countLabel.appendText("${colorPercentage(img, value['count'])} %");
 
     color_el.style.backgroundColor = "rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, 1.0)";
 

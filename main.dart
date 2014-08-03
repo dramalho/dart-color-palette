@@ -91,7 +91,7 @@ void processPalette(ImageElement img) {
   var results_el = querySelector('#results');
 
   // var sortedColors = sortColorMapByRGB( new ColorPalette(img).getColors() );
-  var sortedColors = sortColorMapByHue( new ColorPalette(img).getColors() );
+  var sortedColors = sortColorMapByLightness( new ColorPalette(img).getColors() );
 
   // sortedColorMapKeys(colors).forEach( (key) {
   sortedColors.forEach( (value) {

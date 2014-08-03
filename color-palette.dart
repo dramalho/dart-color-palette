@@ -1,5 +1,6 @@
 import 'dart:html';
 import "package:neuquant/neuquant.dart";
+import 'package:color/color.dart';
 
 class ColorPalette {
   ImageData pixels;
@@ -24,13 +25,21 @@ class ColorPalette {
     neuquant(d, 10);
 
     for (var i = 0; i < d.length; i += 4) {
-      var idx = (d[i] + d[i+1] + d[i+2]);
+      var hsl = Color.rgbToHsl(d[i], d[i+1], d[i+2]);
 
-      if (m[idx] == null) {
-        m[idx] = {'rgb': [d[i],d[i+1],d[i+2]], 'count': 0};
+      if (!hsl['h'].isNaN ) {
+        var idx = (hsl['h'] / 4).round();
+
+        if (m[idx] == null) {
+          m[idx] = {
+            'rgb': [d[i],d[i+1],d[i+2]],
+            'count': 0,
+            'hsl': [hsl['h'], hsl['s'], hsl['l']]
+          };
+        }
+
+        m[idx]['count'] += 1;
       }
-
-      m[idx]['count'] += 1;
     }
 
     // Remove under-populated colors (less than 1% of pixels)

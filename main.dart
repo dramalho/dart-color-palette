@@ -1,6 +1,7 @@
 import 'color-palette.dart';
 
 import 'dart:html';
+import 'package:color/color.dart';
 
 void main() {
   var img = querySelector('.orig');
@@ -16,9 +17,57 @@ List sortColorMapByRGB(Map colorMap) {
   return list;
 }
 
-List sortColoMapByFrequency(Map colorMap) {
+List sortColorMapByFrequency(Map colorMap) {
   var list = colorMap.values.toList();
   list.sort( (x, y) => x['count'].compareTo(y['count']));
+
+  return list;
+}
+
+List sortColorMapByLightness(Map colorMap) {
+  var list = colorMap.values.toList();
+
+  list.sort( (x, y) {
+    return Color.rgbToHsl(
+      x['rgb'][0], x['rgb'][1], x['rgb'][2]
+    )['l'].compareTo(
+      Color.rgbToHsl(
+        y['rgb'][0], y['rgb'][1], y['rgb'][2]
+      )['l']
+    );
+  });
+
+  return list;
+}
+
+List sortColorMapByHue(Map colorMap) {
+  var list = colorMap.values.toList();
+
+  list.sort( (x, y) {
+    return Color.rgbToHsl(
+      x['rgb'][0], x['rgb'][1], x['rgb'][2]
+    )['h'].compareTo(
+      Color.rgbToHsl(
+        y['rgb'][0], y['rgb'][1], y['rgb'][2]
+      )['h']
+    );
+  });
+
+  return list;
+}
+
+List sortColorMapBySaturation(Map colorMap) {
+  var list = colorMap.values.toList();
+
+  list.sort( (x, y) {
+    return Color.rgbToHsl(
+      x['rgb'][0], x['rgb'][1], x['rgb'][2]
+    )['s'].compareTo(
+      Color.rgbToHsl(
+        y['rgb'][0], y['rgb'][1], y['rgb'][2]
+      )['s']
+    );
+  });
 
   return list;
 }
@@ -41,7 +90,8 @@ String colorPercentage(ImageElement img, int pixelCount ) {
 void processPalette(ImageElement img) {
   var results_el = querySelector('#results');
 
-  var sortedColors = sortColorMapByRGB( new ColorPalette(img).getColors() );
+  // var sortedColors = sortColorMapByRGB( new ColorPalette(img).getColors() );
+  var sortedColors = sortColorMapByHue( new ColorPalette(img).getColors() );
 
   // sortedColorMapKeys(colors).forEach( (key) {
   sortedColors.forEach( (value) {

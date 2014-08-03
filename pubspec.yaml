@@ -6,3 +6,4 @@ author: David Ramalho <dramalho@gmail.com>
 dependencies:
   browser: any
   neuquant: any
+  color: any

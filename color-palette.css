@@ -1,0 +1,32 @@
+img.orig {
+  width: 600px;
+}
+
+#results-container {
+  background-color: #AAAAAA;
+  padding: 10px;
+}
+
+#results {
+  list-style-type: none;
+  padding: 25px;
+}
+
+#results li {
+  margin: 2px;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+}
+
+#results li span {
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+
+  background-color: white;
+  font-weight: 600;
+
+  display: block;
+}

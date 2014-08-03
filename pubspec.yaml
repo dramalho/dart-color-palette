@@ -1,0 +1,8 @@
+name: image-color-palette
+version: 0.0.1
+description: >
+  Get a color palette from any image
+author: David Ramalho <dramalho@gmail.com>
+dependencies:
+  browser: any
+  neuquant: any
